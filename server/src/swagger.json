@@ -13,9 +13,7 @@
 	"paths": {
 		"/users": {
 			"post": {
-				"tags": [
-					"User"
-				],
+				"tags": ["User"],
 				"summary": "Create a user",
 				"description": "Create a new user",
 				"requestBody": {
@@ -85,11 +83,32 @@
 				}
 			},
 			"get": {
-				"tags": [
-					"User"
-				],
+				"tags": ["User"],
 				"summary": "List users",
-				"description": "List created users",
+				"description": "List created users with optional limit and offset parameters",
+				"parameters": [
+					{
+						"name": "limit",
+						"in": "query",
+						"description": "Number of items to return",
+						"required": false,
+						"schema": {
+							"type": "integer",
+							"minimum": 1,
+							"maximum": 100
+						}
+					},
+					{
+						"name": "offset",
+						"in": "query",
+						"description": "Number of items to skip",
+						"required": false,
+						"schema": {
+							"type": "integer",
+							"minimum": 0
+						}
+					}
+				],
 				"responses": {
 					"200": {
 						"description": "A json array of users",
@@ -110,30 +129,30 @@
 												"type": "string"
 											}
 										}
+									}
+								},
+								"example": [
+									{
+										"id": 1,
+										"name": "Keira Holman",
+										"email": "keira.holman@email.com"
 									},
-									"example": [
-										{
-											"id": 1,
-											"name": "Keira Holman",
-											"email": "keira.holman@email.com"
-										},
-										{
-											"id": 2,
-											"name": "Tiffany Harding",
-											"email": "tiffany.harding@email.com"
-										},
-										{
-											"id": 3,
-											"name": "Riya Pittman",
-											"email": "riya.pittman@email.com"
-										},
-										{
-											"id": 4,
-											"name": "Liberty Kent",
-											"email": "liberty.kent@email.com"
-										}
-									]
-								}
+									{
+										"id": 2,
+										"name": "Tiffany Harding",
+										"email": "tiffany.harding@email.com"
+									},
+									{
+										"id": 3,
+										"name": "Riya Pittman",
+										"email": "riya.pittman@email.com"
+									},
+									{
+										"id": 4,
+										"name": "Liberty Kent",
+										"email": "liberty.kent@email.com"
+									}
+								]
 							}
 						}
 					}
@@ -142,9 +161,7 @@
 		},
 		"/users/{id}": {
 			"get": {
-				"tags": [
-					"User"
-				],
+				"tags": ["User"],
 				"summary": "Get user by ID",
 				"description": "Get a user by their ID",
 				"parameters": [
@@ -169,9 +186,7 @@
 				}
 			},
 			"put": {
-				"tags": [
-					"User"
-				],
+				"tags": ["User"],
 				"summary": "Update a user",
 				"description": "Update an existing user",
 				"parameters": [

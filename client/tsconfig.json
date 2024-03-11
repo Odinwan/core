@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    // указывает на какую версию js нужно компилировать
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    // позволяет использовать методы массивов и объектов
+    "allowJs": false,
+    // позволяет импортировать js файлы
+    "skipLibCheck": false,
+    // не проверять типы в файле node_modules
+    "esModuleInterop": false,
+    // позволяет использовать export default
+    "allowSyntheticDefaultImports": true,
+    // позволяет использовать export default
+    "strict": false,
+    // не допускает использование any
+    "forceConsistentCasingInFileNames": true,
+    // не допускает использование разных регистров при импорте одного и того же файла
+    "module": "ESNext",
+    // позволяет использовать import/export
+    "moduleResolution": "Node",
+    // позволяет импортировать модули без указания расширения
+    "resolveJsonModule": true,
+    // позволяет импортировать json как модуль
+    "isolatedModules": true,
+    // не компилировать все файлы, а только те, которые изменились
+    "noEmit": true,
+    // не создавать файлы при компиляции
+    "baseUrl": "./src",
+    // это путь к папке client
+    "paths": {
+      "@app/*": ["components/*"],
+      // это путь к папке с компонентами
+      "@assets/*": ["assets/*"],
+      // это путь к папке с картинками
+      "@components/*": ["components/*"],
+      // это путь к папке с компонентами
+      "@core/*": ["core/*"],
+      // это путь к папке с контекстами
+      "@services/*": ["services/*"],
+      // это путь к папке с сервисами
+      "@settings/*": ["settings/*"],
+      // это путь к папке с настройками
+      "@pages/*": ["pages/*"]
+      // это путь к папке с страницами
+    },
+    "jsx": "react",
+    // позволяет использовать jsx синтаксис в tsx файлах
+    "types": ["react", "react-dom"]
+    // позволяет использовать типы react и react-dom
+  },
+  "include": ["src"]
+  // путь к папке с исходниками проекта (client) для компиляции в js
+}
