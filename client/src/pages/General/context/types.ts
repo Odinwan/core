@@ -1,7 +1,7 @@
 import { GetUsersParams, User } from '@services/requests/usersLoader/types';
 
-import { Collection } from '../../../core/RESTClient/interface';
-import { StateInterface } from '../../../core/RXContextCore/useContextSubscriber';
+import { Collection } from '@core/RESTClient/interface';
+import { StateInterface } from '@core/RXContextCore/useContextSubscriber';
 
 export type RequiredGetUsersParams = Required<GetUsersParams>;
 

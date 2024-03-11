@@ -1,4 +1,4 @@
-import { createState } from '../../../core/RXContextCore/useContextSubscriber';
+import { createState } from '@core/RXContextCore/useContextSubscriber';
 
 const [useCRUDIsOpen] = createState<boolean>(false);
 

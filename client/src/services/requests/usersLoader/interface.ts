@@ -1,4 +1,4 @@
-import { ListResponse } from '../../../core/RESTClient/interface';
+import { ListResponse } from '@core/RESTClient/interface';
 import { GetUsersParams, User, UserToCreate } from './types';
 
 export type UsersLoaderType = {

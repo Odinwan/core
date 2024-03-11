@@ -3,8 +3,8 @@ import { User } from '@services/requests/usersLoader/types';
 import { combineLatest } from 'rxjs';
 import { debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
 
-import { Collection } from '../../../core/RESTClient/interface';
-import { createState } from '../../../core/RXContextCore/useContextSubscriber';
+import { Collection } from '@core/RESTClient/interface';
+import { createState } from '@core/RXContextCore/useContextSubscriber';
 import { TEMPLATE_PARAMS } from './consts';
 import UseUsers, { RequiredGetUsersParams, UseUsersActions } from './types';
 
