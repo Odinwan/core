@@ -1,8 +1,10 @@
 import { ListResponse } from '@core/RESTClient/interface';
-import { GetUsersParams, User, UserToCreate } from './types';
+import { GetUsersParams, Client, ClientToCreate } from './types';
 
 export type UsersLoaderType = {
-  GetUsers(params?: GetUsersParams): Promise<ListResponse<User>>;
+  GetUsers(params?: GetUsersParams): Promise<ListResponse<Client>>;
 
-  CreateUser(data: UserToCreate): Promise<User>;
+  CreateUser(data: ClientToCreate): Promise<Client>;
+
+  UpdateUser(data: Client): Promise<Client>;
 };

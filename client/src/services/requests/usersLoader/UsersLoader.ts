@@ -3,7 +3,7 @@ import generateParamsForRequest from '@core/RESTClient/helpers/generateParamsFor
 import { FetchClient, ListResponse } from '@core/RESTClient/interface';
 
 import { UsersLoaderType } from './interface';
-import { GetUsersParams, User, UserToCreate } from './types';
+import {Client, GetUsersParams, ClientToCreate} from './types';
 
 /**
  * Загрузчик данных по налогам
@@ -15,14 +15,19 @@ export class UsersLoader implements UsersLoaderType {
     this.client = fetchClientFactory(token);
   }
 
-  async GetUsers(params?: GetUsersParams): Promise<ListResponse<User>> {
-    const url = params ? generateParamsForRequest<GetUsersParams>(`/users`, params) : `/users`;
+  async GetUsers(params?: GetUsersParams): Promise<ListResponse<Client>> {
+    const url = params ? generateParamsForRequest<GetUsersParams>(`/clients`, params) : `/clients`;
     //@ts-ignore
-    return await this.client.Get<ListResponse<User>>(url);
+    return await this.client.Get<ListResponse<Client>>(url);
   }
 
-  async CreateUser(data: UserToCreate): Promise<User> {
+  async CreateUser(data: ClientToCreate): Promise<Client> {
     //@ts-ignore
-    return await this.client.Post<UserToCreate, User>('/users', data);
+    return await this.client.Post<UserToCreate, Client>('/clients', data);
+  }
+
+  async UpdateUser(data: Client): Promise<Client> {
+    //@ts-ignore
+    return await this.client.Put<UserToCreate, Client>(`/clients/${data.id}`, data);
   }
 }

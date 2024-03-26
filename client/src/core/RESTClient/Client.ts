@@ -97,4 +97,25 @@ export class Client implements FetchClient {
       data,
     }).then((json) => json.data);
   }
+
+  /**
+   * Выполнение запроса к серверу
+   *
+   * @param url
+   * @param data
+   * @param headers
+   */
+  async Put<V, Response>(url: string, data: V, headers?: Collection<string>): Promise<Response> {
+    const commonHeaders: Collection<string> = {};
+    const urlWithServer = `${this.baseUrl}${url}`;
+
+    const collectionHeaders = this.getHeaders({ ...commonHeaders, ...(headers || {}) });
+
+    return axios({
+      method: 'PUT',
+      url: urlWithServer,
+      headers: collectionHeaders,
+      data,
+    }).then((json) => json.data);
+  }
 }

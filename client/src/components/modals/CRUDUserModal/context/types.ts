@@ -9,6 +9,10 @@ export interface UseUsersActions {
   init(): void;
 }
 
+export interface SettingsContext {
+  onSuccess: () => void
+}
+
 interface UseUsers {
   useUsersListParams(): StateInterface<RequiredGetUsersParams>;
 

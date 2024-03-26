@@ -11,81 +11,13 @@
 		}
 	},
 	"paths": {
-		"/users": {
-			"post": {
-				"tags": ["User"],
-				"summary": "Create a user",
-				"description": "Create a new user",
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"name": {
-										"type": "string"
-									},
-									"email": {
-										"type": "string"
-									}
-								},
-								"example": {
-									"name": "Shauna Farrell",
-									"email": "shauna.farrell@email.com"
-								}
-							}
-						}
-					}
-				},
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"properties": {
-										"id": {
-											"type": "number"
-										},
-										"name": {
-											"type": "string"
-										},
-										"email": {
-											"type": "string"
-										}
-									},
-									"example": {
-										"id": 5,
-										"name": "Shauna Farrell",
-										"email": "shauna.farrell@email.com"
-									}
-								}
-							}
-						}
-					},
-					"400": {
-						"description": "Email is already in use",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"properties": {
-										"error": {
-											"type": "string",
-											"example": "Email is already in use"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			},
+		"/clients": {
 			"get": {
-				"tags": ["User"],
-				"summary": "List users",
-				"description": "List created users with optional limit and offset parameters",
+				"tags": [
+					"Client"
+				],
+				"summary": "List Clients",
+				"description": "List created Clients with optional limit and offset parameters",
 				"parameters": [
 					{
 						"name": "limit",
@@ -157,13 +89,171 @@
 						}
 					}
 				}
+			},
+			"post": {
+				"tags": ["Client"],
+				"summary": "Create a client",
+				"description": "Create a new client",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"email": {
+										"type": "string"
+									},
+									"phone": {
+										"type": "string"
+									},
+									"gender": {
+										"type": "string",
+										"title": "Gender Enum"
+									},
+									"firstName": {
+										"type": "string"
+									},
+									"lastName": {
+										"type": "string"
+									},
+									"avatar": {
+										"type": "string"
+									},
+									"birthDate": {
+										"type": "string"
+									},
+									"admin": {
+										"type": "boolean"
+									},
+									"address": {
+										"type": "object",
+										"title": "Address entity"
+									},
+									"createdDate": {
+										"type": "string"
+									},
+									"roles": {
+										"type": "array",
+										"title": "Roles Items"
+									}
+								},
+								"example": {
+									"name": "Shauna Farrell",
+									"email": "shauna.farrell@email.com",
+									"phone": "123-456-7890",
+									"gender": "female",
+									"firstName": "Shauna",
+									"lastName": "Farrell",
+									"avatar": "https://example.com/avatar.jpg",
+									"birthDate": "1990-01-01",
+									"admin": false,
+									"address": {
+										"city": "New York",
+										"country": "USA",
+										"street": "123 Main St",
+										"house": "Apt 1",
+										"zip": "10001"
+									},
+									"createdDate": "2022-03-30",
+									"roles": ["user"]
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"email": {
+											"type": "string"
+										},
+										"phone": {
+											"type": "string"
+										},
+										"gender": {
+											"type": "string",
+											"title": "Gender Enum"
+										},
+										"firstName": {
+											"type": "string"
+										},
+										"lastName": {
+											"type": "string"
+										},
+										"avatar": {
+											"type": "string"
+										},
+										"birthDate": {
+											"type": "string"
+										},
+										"admin": {
+											"type": "boolean"
+										},
+										"address": {
+											"type": "object",
+											"title": "Address entity"
+										},
+										"createdDate": {
+											"type": "string"
+										},
+										"roles": {
+											"type": "array",
+											"title": "Roles Items"
+										}
+									},
+									"example": {
+										"name": "Shauna Farrell",
+										"email": "shauna.farrell@email.com",
+										"phone": "123-456-7890",
+										"gender": "female",
+										"firstName": "Shauna",
+										"lastName": "Farrell",
+										"avatar": "https://example.com/avatar.jpg",
+										"birthDate": "1990-01-01",
+										"admin": false,
+										"address": {
+											"city": "New York",
+											"country": "USA",
+											"street": "123 Main St",
+											"house": "Apt 1",
+											"zip": "10001"
+										},
+										"createdDate": "2022-03-30",
+										"roles": ["user"]
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Email is already in use",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"error": {
+											"type": "string",
+											"example": "Email is already in use"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		},
-		"/users/{id}": {
+		"/clients/{id}": {
 			"get": {
-				"tags": ["User"],
-				"summary": "Get user by ID",
-				"description": "Get a user by their ID",
+				"tags": ["Client"],
+				"summary": "Get Client by ID",
+				"description": "Get a Client by their ID",
 				"parameters": [
 					{
 						"name": "id",
@@ -171,24 +261,23 @@
 						"description": "ID of the user to get",
 						"required": true,
 						"schema": {
-							"type": "integer",
-							"format": "int64"
+							"type": "string"
 						}
 					}
 				],
 				"responses": {
 					"200": {
-						"description": "User found"
+						"description": "Client found"
 					},
 					"404": {
-						"description": "User not found"
+						"description": "Client not found"
 					}
 				}
 			},
 			"put": {
-				"tags": ["User"],
-				"summary": "Update a user",
-				"description": "Update an existing user",
+				"tags": ["Client"],
+				"summary": "Update a Client",
+				"description": "Update an existing Client",
 				"parameters": [
 					{
 						"name": "id",
@@ -196,7 +285,7 @@
 						"description": "ID of the user to update",
 						"required": true,
 						"schema": {
-							"type": "integer",
+							"type": "string",
 							"format": "int64"
 						}
 					}
@@ -207,11 +296,41 @@
 							"schema": {
 								"type": "object",
 								"properties": {
-									"name": {
-										"type": "string"
-									},
 									"email": {
 										"type": "string"
+									},
+									"phone": {
+										"type": "string"
+									},
+									"gender": {
+										"type": "string",
+										"title": "Gender Enum"
+									},
+									"firstName": {
+										"type": "string"
+									},
+									"lastName": {
+										"type": "string"
+									},
+									"avatar": {
+										"type": "string"
+									},
+									"birthDate": {
+										"type": "string"
+									},
+									"admin": {
+										"type": "boolean"
+									},
+									"address": {
+										"type": "object",
+										"title": "Address entity"
+									},
+									"createdDate": {
+										"type": "string"
+									},
+									"roles": {
+										"type": "array",
+										"title": "Roles Items"
 									}
 								}
 							}
@@ -220,13 +339,13 @@
 				},
 				"responses": {
 					"200": {
-						"description": "User updated"
+						"description": "Client updated"
 					},
 					"400": {
 						"description": "Invalid request data"
 					},
 					"404": {
-						"description": "User not found"
+						"description": "Client not found"
 					}
 				}
 			}

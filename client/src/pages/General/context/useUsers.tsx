@@ -1,14 +1,13 @@
 import { usersLoader } from '@services/requests/usersLoader';
-import { User } from '@services/requests/usersLoader/types';
-import { combineLatest } from 'rxjs';
-import { debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
-
+import { Client } from '@services/requests/usersLoader/types';
+import {combineLatest} from 'rxjs';
+import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { Collection } from '@core/RESTClient/interface';
 import { createState } from '@core/RXContextCore/useContextSubscriber';
 import { TEMPLATE_PARAMS } from './consts';
 import UseUsers, { RequiredGetUsersParams, UseUsersActions } from './types';
 
-const [useUsersList, $users] = createState<User[]>([], 'USERS');
+const [useUsersList, $users] = createState<Client[]>([], 'USERS');
 const [useSelectedUsers] = createState<Collection<string>>({}, 'SELECTED_USERS');
 const [useUsersListParams, $params] = createState<RequiredGetUsersParams>(
   TEMPLATE_PARAMS,
@@ -23,7 +22,7 @@ const loadUsers = async (params: RequiredGetUsersParams) => {
   return await usersLoader().GetUsers(params);
 };
 
-combineLatest([$init.pipe(startWith(true)), $params.pipe(startWith(TEMPLATE_PARAMS))])
+combineLatest([$init, $params])
   .pipe(
     debounceTime(500),
     filter(([_, params]) => !!params),
@@ -45,10 +44,10 @@ const actions: UseUsersActions = {
 
 const useUsers = (): UseUsers => {
   return {
-    useUsersListCount,
     useUsersListParams,
-    useUsersList,
+    useUsersListCount,
     useSelectedUsers,
+    useUsersList,
     useLoading,
     useInit,
     actions,

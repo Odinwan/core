@@ -5,6 +5,10 @@ export interface Collection<T> {
   [item: string]: T;
 }
 
+export type KeyCollection<T> = {
+  [item in keyof T]?: string;
+};
+
 export interface ListResponse<T> {
   result: T[];
   count: number;
@@ -16,6 +20,13 @@ export interface ListResponse<T> {
 export interface FetchClient {
   // Выполняет запрос к серверу и возвращает результат
   Post<V, Response>(
+    url: string,
+    data: V,
+    headers?: Collection<string>
+  ): Promise<AxiosResponse<Response>>;
+
+  // Выполняет запрос к серверу и возвращает результат
+  Put<V, Response>(
     url: string,
     data: V,
     headers?: Collection<string>
